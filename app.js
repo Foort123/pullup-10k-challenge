@@ -2199,14 +2199,6 @@ function updateAuthHeaderUI() {
 
         <div class="user-popover-divider"></div>
 
-        <button type="button" id="btn-popover-ranks" class="user-popover-action">
-          <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2">
-            <circle cx="12" cy="8" r="7"></circle>
-            <polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline>
-          </svg>
-          Все 17 статусов челленджа
-        </button>
-
         <button type="button" id="btn-auth-switch-user" class="user-popover-action">
           <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2">
             <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
@@ -2234,7 +2226,6 @@ function updateAuthHeaderUI() {
   const popover = document.getElementById('user-dropdown-popover');
   const btnSwitch = document.getElementById('btn-auth-switch-user');
   const btnLogout = document.getElementById('btn-auth-logout');
-  const btnPopoverRanks = document.getElementById('btn-popover-ranks');
 
   if (trigger && popover && menuContainer) {
     trigger.addEventListener('click', (e) => {
@@ -2249,15 +2240,6 @@ function updateAuthHeaderUI() {
         menuContainer.classList.add('open');
         trigger.setAttribute('aria-expanded', 'true');
       }
-    });
-  }
-
-  if (btnPopoverRanks) {
-    btnPopoverRanks.addEventListener('click', (e) => {
-      e.stopPropagation();
-      if (popover) popover.style.display = 'none';
-      if (menuContainer) menuContainer.classList.remove('open');
-      openRanksModal();
     });
   }
 
