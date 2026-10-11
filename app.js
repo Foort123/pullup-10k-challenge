@@ -1194,22 +1194,6 @@ function render() {
     popoverRankSlot.innerHTML = renderRankBadge(currentRank, 'large');
   }
 
-  const popoverRankProgressFill = document.getElementById('user-popover-rank-progress-fill');
-  const popoverRankProgressText = document.getElementById('user-popover-rank-progress-text');
-  if (popoverRankProgressFill && popoverRankProgressText) {
-    if (currentRank.nextRank) {
-      const prevMin = currentRank.minReps;
-      const nextMin = currentRank.nextRank.minReps;
-      const progressPercent = Math.min(100, Math.max(0, ((stats.completedReps - prevMin) / (nextMin - prevMin)) * 100));
-      popoverRankProgressFill.style.width = `${progressPercent}%`;
-      popoverRankProgressFill.style.backgroundColor = currentRank.nextRank.colorHex;
-      popoverRankProgressText.textContent = `До ур. ${currentRank.nextRank.level} «${currentRank.nextRank.title}»: ${currentRank.repsToNext.toLocaleString('ru-RU')} повт.`;
-    } else {
-      popoverRankProgressFill.style.width = '100%';
-      popoverRankProgressFill.style.backgroundColor = '#EF4444';
-      popoverRankProgressText.textContent = 'Достигнут максимальный статус: Легенда 10 000!';
-    }
-  }
 
   // 6. Update user popover stats if active
   const popoverReps = document.getElementById('user-popover-stat-reps');
@@ -2172,17 +2156,6 @@ function updateAuthHeaderUI() {
           <div class="user-popover-info">
             <div class="user-popover-username">${escapeHtml(activeUser.username)}</div>
             <div id="user-popover-rank-slot" style="margin-top: 4px;">${renderRankBadge(currentRank, 'large')}</div>
-          </div>
-        </div>
-
-        <div class="user-popover-rank-progress" style="margin: 0 16px 12px 16px;">
-          <div class="rank-next-info">
-            <span id="user-popover-rank-progress-text">
-              ${currentRank.nextRank ? `До ур. ${currentRank.nextRank.level} «${currentRank.nextRank.title}»: ${currentRank.repsToNext.toLocaleString('ru-RU')} повт.` : 'Максимальный статус достигнут!'}
-            </span>
-          </div>
-          <div class="rank-progress-bar">
-            <div class="rank-progress-fill" id="user-popover-rank-progress-fill" style="width: ${currentRank.nextRank ? Math.min(100, Math.max(0, ((stats.completedReps - currentRank.minReps) / (currentRank.nextRank.minReps - currentRank.minReps)) * 100)) : 100}%; background-color: ${currentRank.nextRank ? currentRank.nextRank.colorHex : '#EF4444'};"></div>
           </div>
         </div>
 
